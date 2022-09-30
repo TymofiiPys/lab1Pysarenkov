@@ -52,13 +52,13 @@ void mtr::mtr::initMatrix(int inittype, int eltype, std::string filename) {
 					mainMatrix[i][j].med = std::stod(row);
 					break;
 				case 2:
-					if(row != "0")
+					if (row != "0")
 						mainMatrix[i][j].mes = s;
 					else
 						mainMatrix[i][j].mes = "";
 					break;
 				case 3:
-					if(row != "0")
+					if (row != "0")
 						mainMatrix[i][j].f.function = s;
 					else
 						mainMatrix[i][j].f.function = "";
@@ -68,7 +68,7 @@ void mtr::mtr::initMatrix(int inittype, int eltype, std::string filename) {
 			}
 		}
 	}
-	else if(inittype == 1) {
+	else if (inittype == 1) {
 		//Введення вручну
 		std::cout << "Введіть кількість рядків матриці\n";
 		std::cin >> m;
@@ -125,12 +125,32 @@ void mtr::mtr::initMatrix(int inittype, int eltype, std::string filename) {
 		}
 	}
 	else {
-	//Випадкова генерація
+		//Випадкова генерація
+		if (eltype >= 2)
+			std::cout << "Випадкова генерація працює лише для масивів із чисельним типом елементів.\n";
+		else {
+			std::cout << "Введіть кількість рядків матриці\n";
+			std::cin >> m;
+			std::cout << "Введіть кількість стовпців матриці\n";
+			std::cin >> n;
+			mainMatrix = new MatrixElt * [m];
+			for (int i = 0; i < m; i++) {
+				mainMatrix[i] = new MatrixElt[n];
+			}
+			for (int i = 0; i < m; i++) {
+				for (int j = 0; j < n; j++) {
+					if(eltype == 0)
+						mainMatrix[i][j].mei = (int)(rand() / 100);
+					else
+						mainMatrix[i][j].med = (rand() / 100);
+				}
+			}
+		}
 	}
 }
 
 void mtr::mtr::initAddMatrix(int inittype, int eltype, std::string filename) {
-	if (fileread)
+	if (inittype == 2)
 	{
 		std::ifstream file(filename);
 		if (!file)
@@ -176,13 +196,13 @@ void mtr::mtr::initAddMatrix(int inittype, int eltype, std::string filename) {
 					additMatrix[i][j].med = std::stod(row);
 					break;
 				case 2:
-					if(row != "0")
+					if (row != "0")
 						additMatrix[i][j].mes = s;
 					else
 						additMatrix[i][j].mes = "";
 					break;
 				case 3:
-					if(row != "0")
+					if (row != "0")
 						additMatrix[i][j].f.function = s;
 					else
 						additMatrix[i][j].f.function = "";
@@ -192,7 +212,7 @@ void mtr::mtr::initAddMatrix(int inittype, int eltype, std::string filename) {
 			}
 		}
 	}
-	else {
+	else if (inittype == 1) {
 		std::cout << "Введіть кількість рядків матриці\n";
 		std::cin >> m;
 		std::cout << "Введіть кількість стовпців матриці\n";
@@ -246,6 +266,28 @@ void mtr::mtr::initAddMatrix(int inittype, int eltype, std::string filename) {
 			}
 			row = "";
 		}
+	}
+	else {
+	if (eltype >= 2)
+		std::cout << "Випадкова генерація працює лише для масивів із чисельним типом елементів.\n";
+	else {
+		std::cout << "Введіть кількість рядків матриці\n";
+		std::cin >> m;
+		std::cout << "Введіть кількість стовпців матриці\n";
+		std::cin >> n;
+		additMatrix = new MatrixElt * [m];
+		for (int i = 0; i < m; i++) {
+			additMatrix[i] = new MatrixElt[n];
+		}
+		for (int i = 0; i < m; i++) {
+			for (int j = 0; j < n; j++) {
+				if (eltype == 0)
+					additMatrix[i][j].mei = (int)(rand() / 100);
+				else
+					additMatrix[i][j].med = (rand() / 100);
+			}
+		}
+	}
 	}
 }
 
@@ -974,3 +1016,62 @@ double mtr::mtr::functionValue(double x, int i, int j) {
 	StackTop = simpl(StackTop);
 	return StackTop->val;
 }
+
+
+//double mtr::mtr::testfunctionValue(double x, std::string s) {
+//	std::string function = s,
+//		sval;
+//	int rl = function.length();
+//	Node* StackTop = nullptr;
+//	for (int k = 0; k < rl; k++) {
+//		if (function[k] != ' ')//sval - знак операції/змінна/дійсне число, яке буде занесено у вузол. Його зчитування продовжується
+//			//доти, доки у введеному рядку не буде досягнуто пробілу.
+//			sval += function[i];
+//		if (function[k] == ' ' || k == rl - 1)
+//		{
+//			int val;
+//			if (sval == "+")
+//				val = -1;
+//			else if (sval == "*")
+//				val = -2;
+//			else if (sval == "-")
+//				val = -3;
+//			else if (sval == "/")
+//				val = -4;
+//			else if (sval == "sin")
+//				val = -5;
+//			else if (sval == "cos")
+//				val = -6;
+//			else if (sval.length() == 1 && isalpha(sval[0])) //чи є змінною
+//				val = -1 * sval[0]; //змінна записується у вигляді числа, що помножене на -1 відповідно до таблиці ASCII
+//			else //в інших випадках вважаємо, що sval є числом
+//				val = std::stoi(sval);
+//			if (val < 0 && val > -4) //операції +, -, * потребують двох аргументів, тому у них буде дві "дитини" - ліва і права
+//			{
+//				Node* a, * b, * n;
+//				n = new Node(val);
+//				a = pop(&StackTop);
+//				b = pop(&StackTop);
+//				n->left = b;
+//				n->right = a;
+//				push(n, &StackTop);
+//			}
+//			else if (val == -5 || val == -4) { //операції sin і cos потребують лише одного аргумента, тому у них буде одна "дитина" - права
+//				Node* a, * n;
+//				n = new Node(val);
+//				a = pop(&StackTop);
+//				n->right = a;
+//				push(n, &StackTop);
+//			}
+//			else { //змінні і дійсні числа
+//				Node* n = new Node(val);
+//				push(n, &StackTop);
+//			}
+//			sval = "";
+//		}
+//	}
+//	//дії у функції відбуваються в порядку проходження дерева зліва направо
+//	subst(StackTop, x);
+//	StackTop = simpl(StackTop);
+//	return StackTop->val;
+//}

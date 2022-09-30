@@ -1,6 +1,7 @@
 #include <iostream>
 #include "Header.h"
 #include <Windows.h>
+//#include "doctest.h"
 
 void matrEntry() {
 	mtr::mtr m;
@@ -59,7 +60,7 @@ int main()
 	mtr::mtr m;
 	int eltype = 0;
 	switch (op1) {
-	case 1:
+	case 0:
 		std::cout << "Оберіть тип елементів матриці:\n";
 		std::cout << "0 - цілі числа\n";
 		std::cout << "1 - дійсні числа\n";
@@ -67,6 +68,15 @@ int main()
 		std::cout << "3 - функції\n";
 		std::cin >> eltype;
 		m.initMatrix(0, eltype, "");
+		break;
+	case 1:
+		std::cout << "Оберіть тип елементів матриці:\n";
+		std::cout << "0 - цілі числа\n";
+		std::cout << "1 - дійсні числа\n";
+		std::cout << "2 - рядки\n";
+		std::cout << "3 - функції\n";
+		std::cin >> eltype;
+		m.initMatrix(1, eltype, "");
 		break;
 	case 2:
 		std::cout << "Введіть назву файлу:";
@@ -78,7 +88,7 @@ int main()
 		std::cout << "2 - рядки\n";
 		std::cout << "3 - функції\n";
 		std::cin >> eltype;
-		m.initMatrix(1, eltype, filename);
+		m.initMatrix(2, eltype, filename);
 		break;
 	}
 	std::cout << "Оберіть дію над матрицею або функціями, що входять до неї:\n";
@@ -162,3 +172,9 @@ int main()
 	}
 }
 
+//TEST_CASE("testing functionValue") {
+//	CHECK(testfunctionValue(1, "x * x" == 1);
+//	CHECK(testfunctionValue(2, "x * x" == 4);
+//	CHECK(testfunctionValue(2, "x - 1" == 1);
+//	CHECK(testfunctionValue(5, "x / 5" == 1);
+//}

@@ -63,5 +63,6 @@ namespace mtr {
 		void calcIntersection(int i1, int j1, int i2, int j2); //Обчислення фігури-перетину двох фігур з індексами (i1; j1) та (i2; j2) у mainMatrix
 		void calcUnion(int i1, int j1, int i2, int j2);//Обчислення фігури-об'єднання двох фігур
 		double functionValue(double x, int i, int j); //Пошук значення функції в точці x
+		//double testfunctionValue(double x, std::string s);
 	};
 }

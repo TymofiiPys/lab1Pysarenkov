@@ -1,7 +1,9 @@
-﻿  methods.cpp
-E:\prog\Lab1Pysarenkov\methods.cpp(99,25): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-E:\prog\Lab1Pysarenkov\methods.cpp(19,13): warning C4101: 'x': unreferenced local variable
-E:\prog\Lab1Pysarenkov\methods.cpp(219,25): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-E:\prog\Lab1Pysarenkov\methods.cpp(139,13): warning C4101: 'x': unreferenced local variable
-E:\prog\Lab1Pysarenkov\methods.cpp(902,28): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+﻿  Lab1Pysarenkov.cpp
+  methods.cpp
+E:\prog\Lab1Pysarenkov\methods.cpp(102,25): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+E:\prog\Lab1Pysarenkov\methods.cpp(21,13): warning C4101: 'x': unreferenced local variable
+E:\prog\Lab1Pysarenkov\methods.cpp(245,25): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+E:\prog\Lab1Pysarenkov\methods.cpp(165,13): warning C4101: 'x': unreferenced local variable
+E:\prog\Lab1Pysarenkov\methods.cpp(965,28): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+  Generating Code...
   Lab1Pysarenkov.vcxproj -> E:\prog\Lab1Pysarenkov\x64\Debug\Lab1Pysarenkov.exe
